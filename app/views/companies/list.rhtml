@@ -1,0 +1,25 @@
+<div id="product-list">
+    <h1>Listing companies</h1>
+    <table cellpadding="5" cellspacing="0">
+        <% for company in @companies %>
+        <tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+            <td>
+                <span class="list-title"><%=h(company.name) %></span>
+                <br/>
+                <%= h(truncate(company.address, 80)) %>
+            </td>
+            <td class="list-actions">
+                <%= link_to 'Show', :action => 'show', :id => company %>
+                <br/>
+                <%= link_to 'Edit', :action => 'edit', :id => company %>
+                <br/>
+                <%= link_to 'Destroy', { :action => 'destroy', :id => company }, :confirm => 'Are you sure?', :method => :post %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    <%= link_to 'Previous page', { :page => @company_pages.current.previous } if @company_pages.current.previous %>
+    <%= link_to 'Next page', { :page => @company_pages.current.next } if @company_pages.current.next %>
+    <br/>
+    <%= link_to 'New company', :action => 'new' %>
+</div>
